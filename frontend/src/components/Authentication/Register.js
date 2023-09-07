@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 
 const Register = () => {
+    const [id, setId] = useState('');
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -12,6 +13,15 @@ const Register = () => {
     const [typeProject, setTypeProject] = useState('');
     const [msg, setMsg] = useState('');
     const navigate = useNavigate();
+
+    const GetLastId = async(e) => {
+        try{
+            const response = await axios.get('http://localhost:5000/users/lastId');
+            setId(response.data.data.userId);
+        }catch(error){
+            
+        }
+    }
 
     const Register = async(e) =>{
         e.preventDefault();
@@ -33,6 +43,10 @@ const Register = () => {
         }
     }
 
+    useEffect(()=>{
+        GetLastId();
+    }, []); 
+
     return (
         <section className="hero has-background-grey-light is-fullheight is-fullwidth">
         <div className="hero-body">
@@ -42,6 +56,19 @@ const Register = () => {
         
                     <form onSubmit={ Register } className='box'>
                         <p className='has-text-centered'>{msg}</p>
+
+                        <div className="field mt-5">
+                            <label className='label'>Id Karyawan</label>
+                            <div className="controls">
+                                <input 
+                                type="number" 
+                                className="input" 
+                                placeholder='Id Karyawan'
+                                value={id}
+                                readOnly
+                                />
+                            </div>
+                        </div>
 
                         <div className="field mt-5">
                             <label className='label'>Name</label>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import {Link, useNavigate} from 'react-router-dom';
 
 const Login = () => {
-    const [username, setUsername] = useState('');
+    const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [msg, setMsg] = useState('');
     const navigate = useNavigate();
@@ -12,7 +12,7 @@ const Login = () => {
       e.preventDefault();
       try{
           await axios.post('http://localhost:5000/login',{
-              username: username,
+              id: id,
               password: password
           });
           navigate("/dashboard/user");
@@ -33,14 +33,14 @@ const Login = () => {
                 <form onSubmit={ Auth } className='box'>
                     <p className='has-text-centered'>{msg}</p>
                     <div className="field mt-5">
-                        <label className='label'>Username (Nomor telepon)</label>
+                        <label className='label'>Id Karyawan</label>
                         <div className="controls">
                             <input 
                             type="text" 
                             className="input" 
-                            placeholder='Username'
-                            value={username}
-                            onChange={(e)=> setUsername(e.target.value)} />
+                            placeholder='Contoh : 1922023'
+                            value={id}
+                            onChange={(e)=> setId(e.target.value)} />
                         </div>
                     </div>
                     <div className="field mt-5">

@@ -88,13 +88,13 @@ export const Login = async(req, res) => {
     try{
         const user = await User.findAll({
             where:{
-                username: req.body.username
+                id: req.body.id
             }
         });
 
         const match = await bcrypt.compare(req.body.password, user[0].password);
 
-        if (!match) return res.status(400).json({msg : "Email atau password tidak cocok"});
+        if (!match) return res.status(400).json({msg : "Id atau password tidak cocok"});
         const userId = user[0].id;
         const name = user[0].name;
         const username = user[0].username;
@@ -120,7 +120,7 @@ export const Login = async(req, res) => {
         res.json({userId, accessToken});
 
     }catch(error){
-        res.status(404).json({msg: "Email atau password tidak cocok"});
+        res.status(404).json({msg: "Id atau password tidak cocok"});
     }
 };
 
@@ -144,4 +144,25 @@ export const Logout = async(req, res) => {
     });
     res.clearCookie('refreshToken');
     return res.sendStatus(200);
+};
+
+export const GetLastId = async(req, res) => {
+
+    try {
+        const lastUser = await User.findOne({
+          attributes: [
+            [sequelize.fn('max', sequelize.col('id')), 'lastUserId']
+          ]
+        });
+    
+        if (!lastUser) {
+          return res.status(404).json({ error: 'No users found' });
+        }
+    
+        const lastUserId = lastUser.id;
+        return res.status(200).json({ msg: "Apalu", data: lastUserId });
+      } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Server error' });
+      }
 };
