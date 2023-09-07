@@ -1,0 +1,98 @@
+### GET ALL USERS
+GET http://localhost:5000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJOYXVmYWwiLCJlbWFpbCI6Im5hdWZhbEBnbWFpbC5jb20iLCJpYXQiOjE2ODkwNTkyOTgsImV4cCI6MTY4OTA1OTMxOH0.wBBIw_kk_gVkd5bAWkJR8saEvhjy4_kKhKPMMeiUc70
+
+### GET USER BY ID 1
+GET http://localhost:5000/users/16
+
+### CREATE USER
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+    "name" : "Babi Cebok",
+    "email" : "ain@gmail.com",
+    "gender" : "Undefined"
+}
+
+### UPDATE USER BY ID 1
+PATCH http://localhost:5000/users/1
+Content-Type: application/json
+
+{
+    "name" : "Bebek",
+    "email" : "bebek@gmail.com",
+    "gender" : "male"
+}
+
+### DELETE USER BY ID 1
+DELETE http://localhost:5000/users/1
+
+### Mencoba Register USer Baru 
+POST http://localhost:5000/register
+Content-Type: application/json
+
+{
+    "name": "Ain Bebek",
+    "username": "0895800712377",
+    "password": "1234",
+    "confPassword": "1234",
+    "region": "Makassar",
+    "fme_office" : "Sulawesi",
+    "type_project" : "FO"
+}
+
+### MEncoba melakukan LOGIN
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "username": "0895800712377",
+    "password": "1234"
+}
+
+
+### Refresh Token
+GET http://localhost:5000/token
+
+### Logout
+DELETE http://localhost:5000/logout
+
+
+###MENGAMBIL DATA REQUEST BOQ
+GET http://localhost:5000/request
+
+### MEMBUAT SEBUAH REQUEST BOQ
+POST http://localhost:5000/request
+Content-Type: application/json
+
+{
+    "Type_Project": "dwadawdwadad",
+    "Id_Request": "12121",
+    "FME_Office": "12312dwada",
+    "Region": "Makassar",
+    "Section_Name": "Bagaimana",
+    "Unicode": "21231321",
+    "Site_Survey_Date": "2022-01-01T10:30:00Z",
+    "Rectification_Plan_Date": "2022-01-01T10:30:00Z",
+    "Remks": "dwdawadwa2123",
+    "Status": "Rejected",
+    "UOM": "dwdawadwa2123",
+    "Qty": "12",
+    "Id_Foto1": "1",
+    "Id_Foto2": "1",
+    "Id_Foto3": "1",
+    "Id_KMZ": "1"
+}
+
+### Mencoba mengirim Foto
+POST http://localhost:5000/kirimFoto
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="foto"; filename="Materi BUMN 2.png"
+Content-Type: image/png
+
+@./contoh_Foto/Materi BUMN 2.png
+--boundary--
+
