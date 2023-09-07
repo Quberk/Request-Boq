@@ -1,5 +1,5 @@
 import express from "express";
-import { GetLastId, Login, Logout, Register, createUser, 
+import {GetLastId, Login, Logout, Register, createUser, 
         deleteUser, 
         getUsers, 
         getUsersById, 
@@ -18,7 +18,8 @@ router.get('/users/:id', getUsersById);
 router.post('/users', createUser);
 router.patch('/users/:id', updateUser);
 router.delete('/users/:id', deleteUser);
-router.get('/users/lastId', GetLastId);
+//router.get('/users/lastId', GetLastId);
+router.get('/userLastId', GetLastId);
 
 //Request BOQ
 router.get('/request', getRequests);

@@ -1,6 +1,7 @@
 import User from "../models/UserModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { Sequelize } from "sequelize";
 
 export const getUsers = async(req, res)=> {
     try{
@@ -151,7 +152,7 @@ export const GetLastId = async(req, res) => {
     try {
         const lastUser = await User.findOne({
           attributes: [
-            [sequelize.fn('max', sequelize.col('id')), 'lastUserId']
+            [Sequelize.fn('max', Sequelize.col('id')), 'id']
           ]
         });
     

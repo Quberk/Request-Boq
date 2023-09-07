@@ -16,8 +16,8 @@ const Register = () => {
 
     const GetLastId = async(e) => {
         try{
-            const response = await axios.get('http://localhost:5000/users/lastId');
-            setId(response.data.data.userId);
+            const response = await axios.get('http://localhost:5000/userLastId');
+            setId(response.data.data);
         }catch(error){
             
         }
@@ -64,7 +64,7 @@ const Register = () => {
                                 type="number" 
                                 className="input" 
                                 placeholder='Id Karyawan'
-                                value={id}
+                                value={id + 1}
                                 readOnly
                                 />
                             </div>
