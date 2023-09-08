@@ -161,7 +161,7 @@ export const GetLastId = async(req, res) => {
         }
     
         const lastUserId = lastUser.id;
-        return res.status(200).json({ msg: "Apalu", data: lastUserId });
+        return res.status(200).json({ msg: "Data Berhasil diambil dari Server.", data: lastUserId });
       } catch (error) {
         console.error(error);
         return res.status(500).json({ error: 'Server error' });
