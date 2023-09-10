@@ -120,9 +120,10 @@ const BoqList = () => {
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Id Request</th>
                         <th>From (Username)</th>
+                        <th>User Phone Number</th>
                         <th>Status</th>
+                        <th>Date Created</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -130,8 +131,9 @@ const BoqList = () => {
                     {boqs.map((boq, index) => (
                         <tr key={boq.Id}>
                         <td>{index + 1}</td>
-                        <td>{boq.Id}</td>
                         <td>{boq.Username}</td>
+                        <td>{boq.Phone_Number}</td>
+                        <td>{boq.Status}</td>
                         <td>{boq.Status}</td>
                         <td>
                             <Link to={`edit/${boq.Id}`} className='button is-small is-info mx-1'>See</Link>
