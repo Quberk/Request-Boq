@@ -113,7 +113,7 @@ const BoqList = () => {
     
   return (
     <div className='columns mt-5 is-centered'>
-        <div className='column is-half'>
+        <div className='column is-three-quarters'>
             <button className='button is-success mx-1' onClick={exportToExcel}>Export BOQ Data To Excel</button>
             <table className='table is-striped is-fullwidth'>
 
@@ -134,7 +134,7 @@ const BoqList = () => {
                         <td>{boq.Username}</td>
                         <td>{boq.Phone_Number}</td>
                         <td>{boq.Status}</td>
-                        <td>{boq.Status}</td>
+                        <td>{boq.createdAt}</td>
                         <td>
                             <Link to={`edit/${boq.Id}`} className='button is-small is-info mx-1'>See</Link>
                             <button onClick={()=> approveBoq(boq.Id)} className='button is-small is-success mx-1'>Approve</button>

@@ -15,7 +15,7 @@ export const getRequests = async(req, res)=> {
     try{
         const response = await Request.findAll({
             attributes:['Id', 'Type_Project', 'Id_Request', 'FME_Office', 'Region', 'Section_Name', 'Unicode', 'Site_Survey_Date', 
-                        'Rectification_Plan_Date', 'Remks', 'Id_Material', 'Status', 'Username', 'Phone_Number']
+                        'Rectification_Plan_Date', 'Remks', 'Id_Material', 'Status', 'Username', 'Phone_Number', 'createdAt']
         });
 
         const message = "Data Berhasil diambil dari Server.";

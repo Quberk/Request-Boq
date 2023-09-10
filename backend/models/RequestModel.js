@@ -47,6 +47,12 @@ RequestModel.init({
     Username: {
         type: DataTypes.STRING,
     },
+    Phone_Number: {
+        type: DataTypes.STRING,
+    },
+    createdAt:{
+        type: DataTypes.DATE
+    },
 
 },{
     sequelize,
