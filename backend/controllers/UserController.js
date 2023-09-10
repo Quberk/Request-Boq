@@ -100,6 +100,7 @@ export const Login = async(req, res) => {
         const userId = user[0].id;
         const name = user[0].name;
         const username = user[0].username;
+        const phone_number = user[0].phone_number;
         const accessToken = jwt.sign({userId, name, username}, process.env.ACCESS_TOKEN_SECRET, 
             {
             expiresIn: '20s'            
@@ -119,7 +120,7 @@ export const Login = async(req, res) => {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000
         });
-        res.json({userId, accessToken});
+        res.json({userId, name, username, phone_number, accessToken});
 
     }catch(error){
         res.status(404).json({msg: "Id atau password tidak cocok"});
