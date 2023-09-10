@@ -8,6 +8,7 @@ const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confPassword, setConfPassword] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [region, setRegion] = useState('');
     const [fmeOffice, setFmeOffice] = useState('');
     const [typeProject, setTypeProject] = useState('');
@@ -31,6 +32,7 @@ const Register = () => {
                 username: username,
                 password: password,
                 confPassword: confPassword,
+                phone_number: phoneNumber,
                 region: region,
                 fme_office: fmeOffice,
                 type_project: typeProject
@@ -89,9 +91,21 @@ const Register = () => {
                                 <input 
                                 type="text" 
                                 className="input" 
-                                placeholder='Nomor telepon'
+                                placeholder='Username'
                                 value={username}
                                 onChange={(e)=> setUsername(e.target.value)}/>
+                            </div>
+                        </div>
+
+                        <div className="field mt-5">
+                            <label className='label'>Phone Number</label>
+                            <div className="controls">
+                                <input 
+                                type="text" 
+                                className="input" 
+                                placeholder='Nomor telepon'
+                                value={phoneNumber}
+                                onChange={(e)=> setPhoneNumber(e.target.value)}/>
                             </div>
                         </div>
 
