@@ -65,7 +65,7 @@ export const deleteUser = async(req, res)=> {
 
 //Register
 export const Register = async(req, res) => {
-    const { name, username, password, confPassword, region, fme_office, type_project} = req.body;
+    const { name, username, password, confPassword, phone_number, region, fme_office, type_project} = req.body;
     if (password !== confPassword) return res.status(400).json({msg: "Password dan Confirm password tidak Cocok"});
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password, salt);
@@ -74,6 +74,7 @@ export const Register = async(req, res) => {
             name: name,
             username: username,
             password: hashPassword,
+            phone_number: phone_number,
             region: region,
             fme_office : fme_office,
             type_project : type_project

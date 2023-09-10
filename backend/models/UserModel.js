@@ -13,6 +13,9 @@ const User = db.define('users',{
     password:{
         type: DataTypes.STRING
     },
+    phone_number:{
+        type: DataTypes.STRING
+    },
     region : {
         type: DataTypes.STRING
     },
