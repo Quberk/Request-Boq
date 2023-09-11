@@ -18,7 +18,12 @@ const Register = () => {
     const GetLastId = async(e) => {
         try{
             const response = await axios.get('http://localhost:5000/userLastId');
+            
+            //Set Id, FME, Type Project awal
             setId(response.data.data);
+            setFmeOffice("Sulawesi");
+            setTypeProject("FO");
+
         }catch(error){
             
         }

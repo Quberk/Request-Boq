@@ -562,6 +562,7 @@ export const updateRequest = async(req, res)=> {
 
 export const deleteRequest = async(req, res) => {
   try {
+
     const responseRequest = await Request.findOne({
       where:{
         Id: req.params.id
@@ -570,87 +571,100 @@ export const deleteRequest = async(req, res) => {
 
     console.log("Berhasil mendapatkan Response Request...");
 
-    //Mengonversi String Material Id menjadi int
-    let materialId = responseRequest.Id_Material;
-    materialId = materialId.replace(/,$/, '');
-    const materialIdArray = materialId.split(',').map(Number);
+    if (responseRequest.Id_Material != ""){
 
-    for (let i = 0; i < materialIdArray.length; i++){
-      const responseMaterial = await Material.findOne({
-        where:{
-          Id: materialIdArray[i]
+        //Mengonversi String Material Id menjadi int
+        let materialId = responseRequest.Id_Material;
+        materialId = materialId.replace(/,$/, '');
+        const materialIdArray = materialId.split(',').map(Number);
+
+        for (let i = 0; i < materialIdArray.length; i++){
+
+          const responseMaterial = await Material.findOne({
+            where:{
+              Id: materialIdArray[i]
+            }
+          });
+
+          if (responseMaterial.Id_Foto != ""){
+
+              //Mengonversi String foto Id menjadi int
+              let fotoId = responseMaterial.Id_Foto;
+              fotoId = fotoId.replace(/,$/, '');
+              const fotoIdArray = fotoId.split(',').map(Number);
+
+              //Menghapus Foto dari Database & Server
+              for (let j = 0; j < fotoIdArray.length; j++){
+                const responseFoto = await Foto.findOne({
+                  where:{
+                    Id: fotoIdArray[j]
+                  }
+                });
+
+                const filePath = responseFoto.path;
+
+                //Menghapus file Foto pada Server
+                fs.unlink(filePath, (err) => {
+                  if (err) {
+                    console.error('Gagal menghapus foto:', err);
+                  } else {
+                    console.log('Foto berhasil dihapus pada Server.');
+                  }
+                });
+
+                //Menghapus file Foto pada Database
+                await Foto.destroy({
+                  where:{
+                    Id: fotoIdArray[j]
+                  }
+                });
+              }
+
+          }
+
+          if (responseMaterial.Id_KMZ != ""){
+              let kmzId = responseMaterial.Id_KMZ;
+              kmzId = kmzId.replace(/,$/, '');
+              const kmzIdArray = kmzId.split(',').map(Number);
+    
+              //Menghapus KMZ dari Database & Server
+              for (let j = 0; j < kmzIdArray.length; j++){
+                const responseKmz = await kmz.findOne({
+                  where:{
+                    Id: kmzIdArray[j]
+                  }
+                });
+    
+                const filePath = responseKmz.path;
+    
+                //Menghapus file KMZ pada Server
+                fs.unlink(filePath, (err) => {
+                  if (err) {
+                    console.error('Gagal menghapus kmz:', err);
+                  } else {
+                    console.log('Kmz berhasil dihapus pada Server.');
+                  }
+                });
+    
+                //Mneghapus KMZ pada Database
+                await kmz.destroy({
+                  where:{
+                    Id: kmzIdArray[j]
+                  }
+                });
+              }
+          }
+          
+          await Material.destroy({
+            where:{
+              Id: materialIdArray[i]
+            }
+          });
+
         }
-      });
-
-      //Mengonversi String foto Id menjadi int
-      let fotoId = responseMaterial.Id_Foto;
-      fotoId = fotoId.replace(/,$/, '');
-      const fotoIdArray = fotoId.split(',').map(Number);
-      let kmzId = responseMaterial.Id_KMZ;
-      kmzId = kmzId.replace(/,$/, '');
-      const kmzIdArray = kmzId.split(',').map(Number);
-
-      //Menghapus KMZ dari Database & Server
-      for (let j = 0; j < fotoIdArray.length; j++){
-        const responseFoto = await Foto.findOne({
-          where:{
-            Id: fotoIdArray[j]
-          }
-        });
-
-        const filePath = responseFoto.path;
-
-        //Menghapus file Foto pada Server
-        fs.unlink(filePath, (err) => {
-          if (err) {
-            console.error('Gagal menghapus foto:', err);
-          } else {
-            console.log('Foto berhasil dihapus pada Server.');
-          }
-        });
-
-        //Menghapus file Foto pada Database
-        await Foto.destroy({
-          where:{
-            Id: fotoIdArray[j]
-          }
-        });
-      }
-
-      //Menghapus KMZ dari Database & Server
-      for (let j = 0; j < kmzIdArray.length; j++){
-        const responseKmz = await kmz.findOne({
-          where:{
-            Id: kmzIdArray[j]
-          }
-        });
-
-        const filePath = responseKmz.path;
-
-        //Menghapus file KMZ pada Server
-        fs.unlink(filePath, (err) => {
-          if (err) {
-            console.error('Gagal menghapus kmz:', err);
-          } else {
-            console.log('Kmz berhasil dihapus pada Server.');
-          }
-        });
-
-        //Mneghapus KMZ pada Database
-        await kmz.destroy({
-          where:{
-            Id: kmzIdArray[j]
-          }
-        });
-      }
-      
-      await Material.destroy({
-        where:{
-          Id: materialIdArray[i]
-        }
-      });
 
     }
+
 
     //Menghapus Request dari Database
     await Request.destroy({
