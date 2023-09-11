@@ -43,7 +43,7 @@ const Navbar = () => {
       <div className="container">
         <div className="navbar-brand">
 
-            <img src="/Best Idea.png" width="52" height="52"/>
+            <img src="/cropped-LOGO-MKU__icon.png" width="52" height="52"/>
         
             <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
