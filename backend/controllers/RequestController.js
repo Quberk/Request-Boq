@@ -81,14 +81,17 @@ export const createRequest = async (req, res) => {
       Site_Survey_Date = new Date(Site_Survey_Date);
       Rectification_Plan_Date = new Date(Rectification_Plan_Date);
       jumlahMaterial = parseInt(jumlahMaterial);
+
       for(let i = 0; i < Qty.length; i++){
         Qty[i] = parseInt(Qty[i]);
         console.log("Qty : "+Qty[i]);
       }
+
       for(let i = 0; i < jumlahFoto.length; i++){
         jumlahFoto[i] = parseInt(jumlahFoto[i]);
         console.log("Jumlah Foto : "+jumlahFoto[i]);
       }
+
       for(let i = 0; i < jumlahKMZ.length; i++){
         jumlahKMZ[i] = parseInt(jumlahKMZ[i]);
         console.log("Jumlah KMZ : "+jumlahKMZ[i]);
@@ -595,6 +598,7 @@ export const deleteRequest = async(req, res) => {
 
               //Menghapus Foto dari Database & Server
               for (let j = 0; j < fotoIdArray.length; j++){
+
                 const responseFoto = await Foto.findOne({
                   where:{
                     Id: fotoIdArray[j]
@@ -622,13 +626,16 @@ export const deleteRequest = async(req, res) => {
 
           }
 
+          /*
           if (responseMaterial.Id_KMZ != ""){
+
               let kmzId = responseMaterial.Id_KMZ;
               kmzId = kmzId.replace(/,$/, '');
               const kmzIdArray = kmzId.split(',').map(Number);
     
               //Menghapus KMZ dari Database & Server
               for (let j = 0; j < kmzIdArray.length; j++){
+
                 const responseKmz = await kmz.findOne({
                   where:{
                     Id: kmzIdArray[j]
@@ -654,7 +661,7 @@ export const deleteRequest = async(req, res) => {
                 });
               }
           }
-          
+          */
           await Material.destroy({
             where:{
               Id: materialIdArray[i]
