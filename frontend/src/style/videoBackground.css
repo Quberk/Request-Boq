@@ -1,0 +1,29 @@
+/* Tambahkan gaya CSS ke dalam file CSS Anda */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+  }
+  
+  .video-background video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .content {
+    /* Gaya untuk konten di atas video */
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #fff; /* Warna teks sesuaikan dengan kebutuhan Anda */
+    padding: 2rem;
+  }
+  

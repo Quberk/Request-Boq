@@ -9,6 +9,7 @@ import BoqList from "./components/Request BOQ/BoqList";
 import EditBoq from "./components/Request BOQ/EditBoq";
 import EditMaterial from "./components/Material/EditMaterial";
 import Home from "./components/Home/Home";
+import VideoBackground from "./components/VideoBackground";
 
 function App() {
   return ( 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/dashboard/home" element={  
           <>
             <Navbar />
+            <VideoBackground />
             <Home />
           </>
 
@@ -30,6 +32,7 @@ function App() {
         <Route path="/dashboard/user" element={  
           <>
             <Navbar />
+            <VideoBackground />
             <UserList />
           </>
 
@@ -38,6 +41,7 @@ function App() {
         <Route path="/dashboard/user/edit/:id" element={  
           <>
             <Navbar />
+
             <EditUser />
           </>
 
@@ -54,6 +58,7 @@ function App() {
         <Route path="/dashboard/boq" element={  
           <>
             <Navbar />
+            <VideoBackground />
             <BoqList />
           </>
         }/>
