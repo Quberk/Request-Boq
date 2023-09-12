@@ -114,17 +114,17 @@ const BoqList = () => {
   return (
     <div className='columns mt-5 is-centered'>
         <div className='column is-three-quarters'>
-            <button className='button is-success mx-1' onClick={exportToExcel}>Export BOQ Data To Excel</button>
+            <button className='button is-success mx-1' onClick={exportToExcel}>Export BOQ Data Ke File Excel</button>
             <table className='table is-striped is-fullwidth'>
 
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>From (Username)</th>
-                        <th>User Phone Number</th>
+                        <th>Dari (Username)</th>
+                        <th>Nomor telepon User</th>
                         <th>Status</th>
-                        <th>Date Created</th>
-                        <th>Actions</th>
+                        <th>Tanggal Pembuatan</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -137,8 +137,8 @@ const BoqList = () => {
                         <td>{boq.createdAt}</td>
                         <td>
                             <Link to={`edit/${boq.Id}`} className='button is-small is-info mx-1'>See</Link>
-                            <button onClick={()=> approveBoq(boq.Id)} className='button is-small is-success mx-1'>Approve</button>
-                            <button onClick={()=> rejectBoq(boq.Id)} className='button is-small is-danger mx-1'>Reject</button>
+                            <button onClick={()=> approveBoq(boq.Id)} className='button is-small is-success mx-1'>Terima</button>
+                            <button onClick={()=> rejectBoq(boq.Id)} className='button is-small is-danger mx-1'>Tolak</button>
                         </td>
                     </tr>
                     ))}

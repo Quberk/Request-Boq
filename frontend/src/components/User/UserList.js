@@ -69,7 +69,7 @@ const UserList = () => {
     <div className='columns mt-5 is-centered'>
         <div className='column is-half'>
             <div className='container mt-7 mb-5'>
-                <h1>Welcome Back : {name}</h1>
+                <h1>Selamat Datang : {name}</h1>
             </div>
             <Link to={`../register`} className='button is-success'>
                 Add New User
@@ -79,9 +79,9 @@ const UserList = () => {
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Name</th>
+                        <th>Nama</th>
                         <th>Username</th>
-                        <th>Actions</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>

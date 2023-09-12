@@ -2,7 +2,7 @@ import Request from "../models/RequestModel.js";
 
 export const ApproveRequest = async(req, res) => {
     
-      const Status = "Approved"
+      const Status = "Diterima"
 
       // ==================== Mengupdate Status Field pada Request Table Database =======================
       try {
@@ -31,7 +31,7 @@ export const ApproveRequest = async(req, res) => {
 
 export const RejectRequest = async(req, res) => {
     
-    const Status = "Rejected"
+    const Status = "Ditolak"
 
     // ==================== Mengupdate Status Field pada Request Table Database =======================
     try {
