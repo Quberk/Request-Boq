@@ -38,7 +38,7 @@ const Login = () => {
                             <input 
                             type="text" 
                             className="input" 
-                            placeholder='Contoh : 1922023'
+                            placeholder='Contoh : 64040003'
                             value={id}
                             onChange={(e)=> setId(e.target.value)} />
                         </div>
