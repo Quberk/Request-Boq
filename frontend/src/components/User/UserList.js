@@ -68,9 +68,7 @@ const UserList = () => {
   return (
     <div className='columns mt-5 is-centered'>
         <div className='column is-half'>
-            <div className='container mt-7 mb-5'>
-                <h1>Selamat Datang : {name}</h1>
-            </div>
+            
             <Link to={`../register`} className='button is-success'>
                 Add New User
             </Link>
