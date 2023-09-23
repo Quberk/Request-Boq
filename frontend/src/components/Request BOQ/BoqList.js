@@ -12,6 +12,8 @@ const BoqList = () => {
 
     const [boqs, setBoq] = useState([]);
 
+    const [rejectId, setRejectId] = useState('');
+
     const [Username, setUsername] = useState('');
     const [From, setFrom] = useState('');
     const [Status, setStatus] = useState('');
@@ -19,6 +21,12 @@ const BoqList = () => {
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
     const navigate = useNavigate();
+
+    const rejectClick = (id) => {
+        setRejectId(id);
+        togglePopup();
+        
+    }
 
     useEffect(()=>{
         getBoqs();
@@ -120,7 +128,7 @@ const BoqList = () => {
     <div className='columns mt-5 is-centered'>
         <div className='column is-three-quarters'>
 
-            <RemksPopUp isOpen={isOpen} togglePopup={togglePopup} />
+            <RemksPopUp isOpen={isOpen} togglePopup={togglePopup} Id={rejectId} />
 
             <button className='button is-success mx-1' onClick={exportToExcel}>Export BOQ Data Ke File Excel</button>
             <table className='table is-striped is-fullwidth'>
@@ -137,6 +145,7 @@ const BoqList = () => {
                 </thead>
                 <tbody>
                     {boqs.map((boq, index) => (
+
                         <tr key={boq.Id}>
                         <td>{index + 1}</td>
                         <td>{boq.Username}</td>
@@ -146,7 +155,7 @@ const BoqList = () => {
                         <td>
                             <Link to={`edit/${boq.Id}`} className='button is-small is-info mx-1'>See</Link>
                             <button onClick={()=> approveBoq(boq.Id)} className='button is-small is-success mx-1'>Terima</button>
-                            <button onClick={togglePopup} className='button is-small is-danger mx-1'>Tolak</button>
+                            <button onClick={() => rejectClick(boq.Id)} className='button is-small is-danger mx-1'>Tolak</button>
                             
                         </td>
                     </tr>

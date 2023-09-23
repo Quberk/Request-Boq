@@ -1,6 +1,19 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const RemksPopUp = ({ isOpen, togglePopup }) => {
+const RemksPopUp = ({ isOpen, togglePopup, Id }) => {
+
+    const navigate = useNavigate();
+
+    const rejectBoq = async (id) =>{
+        try{
+            await axios.put(`http://localhost:5000/rejectRequest/${id}`);
+            window.location.reload();
+        }catch(error){
+            console.log(error);
+        }
+    }
 
     return (
         <div>
@@ -18,10 +31,11 @@ const RemksPopUp = ({ isOpen, togglePopup }) => {
                                     placeholder='Remks'
                                     />
                                 </div>
+                                <button onClick={()=> rejectBoq(Id)} className='button is-small is-success mx-1'>Kirim</button>
+                                <button onClick={togglePopup} className='button is-small is-danger mx-1'>Batal</button>
                             </div>
                         </div>
                     </div>
-                    <button className="modal-close is-large" aria-label="close" onClick={togglePopup}></button>
                 </div>
             )}
         </div>
