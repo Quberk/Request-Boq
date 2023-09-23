@@ -6,9 +6,11 @@ const RemksPopUp = ({ isOpen, togglePopup, Id }) => {
 
     const navigate = useNavigate();
 
+    const [Remks, setRemks] = useState('');
+
     const rejectBoq = async (id) =>{
         try{
-            await axios.put(`http://localhost:5000/rejectRequest/${id}`);
+            await axios.put(`http://localhost:5000/rejectRequest/${id}`, {Remks: Remks});
             window.location.reload();
         }catch(error){
             console.log(error);
@@ -29,6 +31,8 @@ const RemksPopUp = ({ isOpen, togglePopup, Id }) => {
                                     type="text" 
                                     className="input"
                                     placeholder='Remks'
+                                    value={Remks}
+                                    onChange={(e)=> setRemks(e.target.value)} 
                                     />
                                 </div>
                                 <button onClick={()=> rejectBoq(Id)} className='button is-small is-success mx-1'>Kirim</button>

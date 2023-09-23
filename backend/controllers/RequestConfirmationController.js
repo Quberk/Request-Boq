@@ -35,6 +35,8 @@ export const RejectRequest = async(req, res) => {
 
     // ==================== Mengupdate Status Field pada Request Table Database =======================
     try {
+      let Remks = req.body.Remks;
+
       // Cari data permintaan berdasarkan ID
       const existingRequest = await Request.findOne({
         where: {
@@ -49,6 +51,7 @@ export const RejectRequest = async(req, res) => {
 
       // Update field Status pada data permintaan
       existingRequest.Status = Status;
+      existingRequest.Remks = Remks;
       await existingRequest.save();
 
       res.status(200).json({ msg: 'Request Status Updated' });

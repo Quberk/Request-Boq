@@ -17,6 +17,7 @@ const BoqList = () => {
     const [Username, setUsername] = useState('');
     const [From, setFrom] = useState('');
     const [Status, setStatus] = useState('');
+    const [Remks, setRemks] = useState('');
 
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
@@ -84,7 +85,7 @@ const BoqList = () => {
 
     const rejectBoq = async (id) =>{
         try{
-            await axios.put(`http://localhost:5000/rejectRequest/${id}`);
+            await axios.put(`http://localhost:5000/rejectRequest/${id}`, {Remks: Remks});
             getBoqs();
         }catch(error){
             console.log(error);
