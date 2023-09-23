@@ -3,8 +3,13 @@ import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
 import jwt_decode from "jwt-decode";
 import * as XLSX from 'xlsx';
+import RemksPopUp, {usePopup} from './RemksPopUp';
+
 
 const BoqList = () => {
+
+    const { isOpen, togglePopup } = usePopup();
+
     const [boqs, setBoq] = useState([]);
 
     const [Username, setUsername] = useState('');
@@ -114,6 +119,9 @@ const BoqList = () => {
   return (
     <div className='columns mt-5 is-centered'>
         <div className='column is-three-quarters'>
+
+            <RemksPopUp isOpen={isOpen} togglePopup={togglePopup} />
+
             <button className='button is-success mx-1' onClick={exportToExcel}>Export BOQ Data Ke File Excel</button>
             <table className='table is-striped is-fullwidth'>
 
@@ -138,7 +146,8 @@ const BoqList = () => {
                         <td>
                             <Link to={`edit/${boq.Id}`} className='button is-small is-info mx-1'>See</Link>
                             <button onClick={()=> approveBoq(boq.Id)} className='button is-small is-success mx-1'>Terima</button>
-                            <button onClick={()=> rejectBoq(boq.Id)} className='button is-small is-danger mx-1'>Tolak</button>
+                            <button onClick={togglePopup} className='button is-small is-danger mx-1'>Tolak</button>
+                            
                         </td>
                     </tr>
                     ))}
